@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:ui';
+import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
@@ -22,12 +23,13 @@ class _GenerateQRState extends State<GenerateQR> {
     try {
       RenderRepaintBoundary boundary = globalKey.currentContext.findRenderObject();
       var image = await boundary.toImage();
-      ByteData byteData = await image.toByteData(format: ImageByteFormat.png);
-      Uint8List pngBytes = byteData.buffer.asUint8List();
-
+  //    ByteData byteData = await image.toByteData(format: ImageByteFormat.png);
+   //   Uint8List pngBytes = byteData.buffer.asUint8List();
+      final ByteData bytes = await rootBundle.load('assets/image1.png');
+      await Share.file('esys image', 'esys.png', bytes.buffer.asUint8List(), 'image/png');
       final tempDir = await getTemporaryDirectory();
       final file = await new File('${tempDir.path}/image.png').create();
-      await file.writeAsBytes(pngBytes);
+  //    await file.writeAsBytes(pngBytes);
 
       final channel = const MethodChannel('channel:me.alfian.share/share');
       channel.invokeMethod('shareFile', 'image.png');

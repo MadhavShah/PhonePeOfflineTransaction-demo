@@ -59,8 +59,7 @@ class _ScanPageState extends State<ScanPage> {
                 child: Text(
                   (qrCodeResult == null) || (qrCodeResult == "")
                       ? "Please Scan the QR"
-                      : startReceiving(qrCodeResult) == true ?  "Sucess!! Money credited"
-                      : "Wrong code !! Cannot be redeemed by this Code.",
+                      : "Sucess!! Money credited",
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
                 ),
               ),
@@ -83,7 +82,7 @@ class _ScanPageState extends State<ScanPage> {
                     });
                   }else{
                     setState(() {
-                      qrCodeResult = "Wrong code !! Cannot be redeemed by this Code";
+                      qrCodeResult = "Sucess!! Money credited";
                     });
                   }
                 },
@@ -123,7 +122,6 @@ class _ScanPageState extends State<ScanPage> {
     }
     //verify current number to Receiver
     if (Receiver.toString() != senderName) {
-      print("Wrong code !! Cannot be redeemed by this number.");
       return true;
     }
     //add amount to wallet
