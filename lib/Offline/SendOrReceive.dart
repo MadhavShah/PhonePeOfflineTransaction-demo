@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Constant.dart';
 import 'ReceiveMoney.dart';
 import 'SendMoney.dart';
 
@@ -95,9 +96,10 @@ class _SendOrReceiveState extends State<SendOrReceive> {
               MaterialButton(
                 color: Colors.purple,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ScanPage()),
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext context) => ScanPage()),
+                        ModalRoute.withName(PHONE_PE)
                     );
                   },
                 child: Text("RECEIVE MONEY",
@@ -131,9 +133,10 @@ class _SendOrReceiveState extends State<SendOrReceive> {
       widget.wallet = widget.wallet - double.parse(_amount.text);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setDouble('wallet', widget.wallet);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => GenerateQR(base64Str)),
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (BuildContext context) => GenerateQR(base64Str)),
+          ModalRoute.withName(PHONE_PE)
       );
     }
     print(base64Str);

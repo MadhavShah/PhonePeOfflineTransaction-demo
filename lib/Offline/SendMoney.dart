@@ -17,8 +17,6 @@ class GenerateQR extends StatefulWidget {
 class _GenerateQRState extends State<GenerateQR> {
   GlobalKey globalKey = new GlobalKey();
   final qrdataFeed = TextEditingController();
-  String _dataString = "Hello from this QR";
-  String _inputErrorText;
 
   Future<void> _captureAndSharePng() async {
     try {

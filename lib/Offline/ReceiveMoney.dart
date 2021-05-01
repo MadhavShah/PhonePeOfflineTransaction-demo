@@ -103,19 +103,23 @@ class _ScanPageState extends State<ScanPage> {
     var Amount = int.parse((transObject["1"].toString()));
     var Sender = transObject["2"];
     var Receiver = transObject["3"];
+    print("hbdjjkv");
+    print(Receiver.toString());
     var expiry = DateTime.parse(transObject["4"]);
     if (expiry.isAfter(DateTime.now()) != true) {
       return false;
     }
     //verify current number to Receiver
-    if (Receiver != senderName) {
+    if (Receiver.toString() != senderName) {
       print("Wrong code !! Cannot be redeemed by this number.");
-      return false;
+      return true;
     }
     //add amount to wallet
     wallet = wallet + Amount;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble('wallet', wallet);
+
+    getName();
 
     return true;
   }
