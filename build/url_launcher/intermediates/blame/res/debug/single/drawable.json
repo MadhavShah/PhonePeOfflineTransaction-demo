@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\panda\\Desktop\\HACKFEST\\flutter_phonepe-clone-master\\build\\url_launcher\\intermediates\\res\\merged\\debug\\drawable\\notification_bg.xml",
+        "source": "C:\\Users\\panda\\.gradle\\caches\\transforms-2\\files-2.1\\15e620d3a06465abd71007dc1e213aca\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\panda\\Desktop\\HACKFEST\\flutter_phonepe-clone-master\\build\\url_launcher\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\panda\\.gradle\\caches\\transforms-2\\files-2.1\\15e620d3a06465abd71007dc1e213aca\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\panda\\Desktop\\HACKFEST\\flutter_phonepe-clone-master\\build\\url_launcher\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\panda\\.gradle\\caches\\transforms-2\\files-2.1\\15e620d3a06465abd71007dc1e213aca\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\panda\\Desktop\\HACKFEST\\flutter_phonepe-clone-master\\build\\url_launcher\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
+        "source": "C:\\Users\\panda\\.gradle\\caches\\transforms-2\\files-2.1\\15e620d3a06465abd71007dc1e213aca\\res\\drawable\\notification_bg_low.xml"
+    }
+]
