@@ -1,0 +1,75 @@
+name: phonepe_offline
+description: HACKFEST phonepe problem statement
+
+publish_to:
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.11.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  image_picker:
+  carousel_slider: any
+  url_launcher: ^5.0.2
+  intl: ^0.15.7
+  fluttertoast: any
+  path_provider: ^2.0.1
+  barcode_scan_fix: ^1.0.2
+  qr_flutter: ^4.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+   - assets/banking.png
+   - assets/ic_menu_balance_selected.png
+   - assets/ic_menu_invite.png
+   - assets/ic_menu_receive_selected.png
+   - assets/ic_radiofocused.png
+   - assets/notifications.png
+   - assets/outline_account_circle.png
+   - assets/outline_help.png
+   - assets/outline_qrscan.png
+   - assets/placeholder_contact_provider.png
+   - assets/request_money.png
+   - assets/suggestions_strip.png
+   - assets/logo.png
+   - assets/powered_by.png
+   - assets/recharge.png
+   - assets/dth.png
+   - assets/electricity.png
+   - assets/creditcard.png
+   - assets/gas.png
+   - assets/postpaid.png
+   - assets/landline.png
+   - assets/broadband.png
+   - assets/water.png
+   - assets/datacard.png
+   - assets/insurance.png
+   - assets/muncipaltax.png
+   - assets/giftcardd.png
+   - assets/googleplay.png
+   - assets/history.png
+   - assets/stores.png
+   - assets/placeholder.png
+   - assets/rupee.png
+   - assets/newgiftcard.png
+   - assets/right-arrow.png
+   - assets/ghghgh.jpg
