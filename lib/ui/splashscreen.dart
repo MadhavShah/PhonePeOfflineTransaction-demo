@@ -49,30 +49,10 @@ class SplashScreenState extends State<SplashScreen>
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(bottom: 30.0),
-                child: new Image.asset(
-                  "assets/powered_by.png",
-                  height: 25.0,
-                  fit: BoxFit.scaleDown,
-                ),
-              )
-            ],
-          ),
-          new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-         //     new Image.asset(
-         //       "assets/logo.png",
-         //       width: animation.value * 250,
-         //       height: animation.value * 250,
-         //     ),
-            ],
-          ),
+          Text(
+            "BitParadox",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          )
         ],
       ),
     );

@@ -44,7 +44,7 @@ class _FlutterDevsState extends State<FlutterDevs> {
                     ),
                     Row(children: <Widget>[
                       Text(
-                        'Noida',
+                        'Dhanbad',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),
@@ -189,29 +189,16 @@ class _FlutterDevsState extends State<FlutterDevs> {
         SliverToBoxAdapter(
             child: Stack(
           children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.width/3.0,
-              width: MediaQuery.of(context).size.width,
+            GestureDetector(
+              onTap: () {},
               child: Container(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 13),
-             //     child: CarouselSlider(
-             //       aspectRatio: 2,
-             //       viewportFraction: 1.0,
-             //       initialPage: 0,
-             //       autoPlayInterval: Duration(seconds: 2),
-             //       autoPlayAnimationDuration: Duration(milliseconds: 800),
-             //       pauseAutoPlayOnTouch: Duration(seconds: 2),
-             //       enlargeCenterPage: true,
-             //       autoPlay: true,
-             //       onPageChanged: (index) {
-             //         setState(() {
-             //           _currentIndex = index;
-             //           print(_currentIndex);
-             //         });
-             //       },
-             //       items: CarouselSliderList(_getImageSliderList()),
-             //     ),
+                height: MediaQuery.of(context).size.width/3.0,
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 13),
+                    child: Text("Offline Transaction"),
+                  ),
                 ),
               ),
             ),
