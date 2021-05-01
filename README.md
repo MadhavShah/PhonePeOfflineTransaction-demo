@@ -1,4 +1,4 @@
-# Flutter PhonePe UI Demo
+# PhonePe Offline Transaction
 
 A sample application to show PhonePe Flutter Clone. 
 
