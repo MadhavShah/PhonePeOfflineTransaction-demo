@@ -79,12 +79,7 @@ class _GenerateQRState extends State<GenerateQR> {
                 padding: const EdgeInsets.all(8.0),
                 //Button for generating QR code
                 child: FlatButton(
-                  onPressed: ()  {
-                    setState((){
-                      _dataString = widget.qrData;
-                      _inputErrorText = null;
-                    });
-                  },
+                  onPressed: _captureAndSharePng,
                   //Title given on Button
                   child: Text("Share QR Code",style: TextStyle(color: Colors.indigo[900],),),
                   shape: RoundedRectangleBorder(

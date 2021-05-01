@@ -52,6 +52,7 @@ class _FlutterDevsState extends State<FlutterDevs> {
             color: Colors.purple,
             onPressed: () async {
               await setName();
+              await getName();
               setState(() {
                 widget.popup = false;
               });
