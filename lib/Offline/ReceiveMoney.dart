@@ -27,6 +27,7 @@ class _ScanPageState extends State<ScanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text("Scan with " + (backCamera ? "Front Cam" : "Back Cam")),
           actions: <Widget>[
@@ -52,15 +53,18 @@ class _ScanPageState extends State<ScanPage> {
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: 80,),
-              Text(
-                (qrCodeResult == null) || (qrCodeResult == "")
-                    ? "Please Scan the QR"
-                    : startReceiving(qrCodeResult) == true ?  "Sucess!! Money credited"
-                    : "Wrong code !! Cannot be redeemed by this number.",
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
+              SizedBox(height: 50,),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  (qrCodeResult == null) || (qrCodeResult == "")
+                      ? "Please Scan the QR"
+                      : startReceiving(qrCodeResult) == true ?  "Sucess!! Money credited"
+                      : "Wrong code !! Cannot be redeemed by this Code.",
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
+                ),
               ),
-              SizedBox(height: 80,),
+              SizedBox(height: 50,),
               Container(
                 padding: EdgeInsets.all(10),
                 color: Colors.white70,
@@ -73,7 +77,15 @@ class _ScanPageState extends State<ScanPage> {
               MaterialButton(
                 color: Colors.purple,
                 onPressed: () {
-
+                  if(startReceiving(qrCode.text) == true) {
+                    setState(() {
+                      qrCodeResult = "Sucess!! Money credited";
+                    });
+                  }else{
+                    setState(() {
+                      qrCodeResult = "Wrong code !! Cannot be redeemed by this Code";
+                    });
+                  }
                 },
                 child: Text("Check QR Code",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
