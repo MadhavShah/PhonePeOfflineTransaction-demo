@@ -1,20 +1,52 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:phonepe_offline/Offline/SendOrReceive.dart';
 import 'package:phonepe_offline/model/ImageSliderModel.dart';
 import 'package:phonepe_offline/model/Listpaymodel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class FlutterDevs extends StatefulWidget {
+  bool popup;
+
+  FlutterDevs(this.popup);
   @override
   _FlutterDevsState createState() => _FlutterDevsState();
 }
 
 class _FlutterDevsState extends State<FlutterDevs> {
   int _currentIndex = 0;
+  final _username = TextEditingController();
 
+  Future<bool> setName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('sender', _username.text);
+    prefs.setDouble('wallet', 5000.00);
+  }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return widget.popup == true ?
+    AlertDialog(
+      title: Text("Hey what's your name?"),
+      content: Column(
+        children: [
+          TextField(
+            controller: _username,
+          ),
+          MaterialButton(
+            color: Colors.purple,
+            onPressed: () async {
+              await setName();
+              setState(() {
+                widget.popup = false;
+              });
+            },
+            child: Text("Go >>",
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
+          )
+        ],
+      ),
+    )
+    :  Scaffold(
         appBar: _appBar(),
         body: SafeArea(child: _bodyItem()),
         bottomNavigationBar: _bottemTab());

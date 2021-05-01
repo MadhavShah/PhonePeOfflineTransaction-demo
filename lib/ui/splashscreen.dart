@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Constant.dart';
 
@@ -24,6 +25,8 @@ class SplashScreenState extends State<SplashScreen>
   void navigationPage() {
     Navigator.of(context).pushReplacementNamed(PHONE_PE);
   }
+
+
 
   @override
   void initState() {
@@ -55,7 +58,7 @@ class SplashScreenState extends State<SplashScreen>
             children: <Widget>[
               Container(
                 child: Text("BitParadoX",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purple)
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Colors.purple)
                 ),
                 width: animation.value * 300,
                 height: animation.value * 300,

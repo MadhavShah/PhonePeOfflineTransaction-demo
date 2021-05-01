@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class GenerateQR extends StatefulWidget {
+  String qrData;
+  GenerateQR(this.qrData);
   @override
   _GenerateQRState createState() => _GenerateQRState();
 }
 
 class _GenerateQRState extends State<GenerateQR> {
 
-  String qrData="https://github.com/ChinmayMunje";
   final qrdataFeed = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -27,34 +28,19 @@ class _GenerateQRState extends State<GenerateQR> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              QrImage(data: qrData),
+              QrImage(data: widget.qrData),
               SizedBox(height: 20),
-              Text("Generate QR Code",style: TextStyle(fontSize: 20),),
 
-              //TextField for input link
-              TextField(
-                decoration: InputDecoration(
-                    hintText: "Enter your link here..."
-                ),
-              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 //Button for generating QR code
                 child: FlatButton(
                   onPressed: () async {
-                    //a little validation for the textfield
-                    if (qrdataFeed.text.isEmpty) {
-                      setState(() {
-                        qrData = "";
-                      });
-                    } else {
-                      setState(() {
-                        qrData = qrdataFeed.text;
-                      });
-                    }
+
+
                   },
                   //Title given on Button
-                  child: Text("Generate QR Code",style: TextStyle(color: Colors.indigo[900],),),
+                  child: Text("Copy & Share QR",style: TextStyle(color: Colors.indigo[900],),),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                     side: BorderSide(color: Colors.indigo[900]),
@@ -67,4 +53,6 @@ class _GenerateQRState extends State<GenerateQR> {
       ),
     );
   }
+
+
 }
