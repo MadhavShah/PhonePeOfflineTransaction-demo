@@ -1,64 +1,58 @@
-import 'package:barcode_scan_fix/barcode_scan.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-class ScanQR extends StatefulWidget {
+
+class ScanPage extends StatefulWidget {
   @override
-  _ScanQRState createState() => _ScanQRState();
+  _ScanPageState createState() => _ScanPageState();
 }
-
-class _ScanQRState extends State<ScanQR> {
-
-  String qrCodeResult = "Not Yet Scanned";
-
+class _ScanPageState extends State<ScanPage> {
+  String qrCodeResult;
+  bool backCamera = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Scan QR Code"),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            //Message displayed over here
-            Text(
-              "Result",
-              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              qrCodeResult,
-              style: TextStyle(
-                fontSize: 20.0,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-
-            //Button to scan QR code
-            FlatButton(
-              padding: EdgeInsets.all(15),
-              onPressed: () async {
-                String codeSanner = await BarcodeScanner.scan();    //barcode scnner
+        appBar: AppBar(
+          title: Text("Scan using:" + (backCamera ? "Front Cam" : "Back Cam")),
+          actions: <Widget>[
+            IconButton(
+              icon: backCamera
+                  ? Icon(Icons.camera_alt)
+                  : Icon(Icons.camera),
+              onPressed: () {
                 setState(() {
-                  qrCodeResult = codeSanner;
+                  backCamera = !backCamera;
+                  camera = backCamera ? 1 : -1;
                 });
               },
-              child: Text("Open Scanner",style: TextStyle(color: Colors.indigo[900]),),
-              //Button having rounded rectangle border
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.indigo[900]),
-                borderRadius: BorderRadius.circular(20.0),
-              ),
             ),
-
+            IconButton(
+              icon: Icon(MaterialCommunityIcons.qrcode_scan),
+              onPressed: () {
+                _scan();
+              },
+            )
           ],
         ),
+        body: Center(
+          child: Text(
+            (qrCodeResult == null) || (qrCodeResult == "")
+                ? "Please Scan to show some result"
+                : "Result:" + qrCodeResult,
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
+          ),
+        ));
+  }
+  Future<void> _scan() async {
+    ScanResult codeSanner = await BarcodeScanner.scan(
+      options: ScanOptions(
+        useCamera: camera,
       ),
     );
+    setState(() {
+      qrCodeResult = codeSanner.rawContent;
+    });
   }
 }
+int camera = 1;

@@ -39,7 +39,7 @@ class _SendOrReceiveState extends State<SendOrReceive> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ScanQR()),
+                      MaterialPageRoute(builder: (context) => ScanPage()),
                     );
                   },
                 child: Text("RECEIVE MONEY",
