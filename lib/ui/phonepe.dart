@@ -15,17 +15,34 @@ class FlutterDevs extends StatefulWidget {
 class _FlutterDevsState extends State<FlutterDevs> {
   int _currentIndex = 0;
   final _username = TextEditingController();
+  String senderName;
+  double wallet;
 
   Future<bool> setName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('sender', _username.text);
     prefs.setDouble('wallet', 5000.00);
   }
+
+  Future<bool> getName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+     senderName = prefs.getString('sender');
+    print(senderName);
+     wallet = prefs.getDouble('wallet');
+    print(wallet);
+  }
+
+  @override
+  void initState() {
+    getName();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return widget.popup == true ?
     AlertDialog(
-      title: Text("Hey what's your name?"),
+      title: Text("Hey what's your Mobile Number?"),
       content: Column(
         children: [
           TextField(
@@ -78,7 +95,7 @@ class _FlutterDevsState extends State<FlutterDevs> {
                     ),
                     Row(children: <Widget>[
                       Text(
-                        'Noida',
+                        'Delhi',
                         style: TextStyle(
                             fontSize: 14, fontWeight: FontWeight.bold),
                       ),
@@ -231,7 +248,7 @@ class _FlutterDevsState extends State<FlutterDevs> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SendOrReceive()),
+                    MaterialPageRoute(builder: (context) => SendOrReceive(wallet, senderName)),
                   );
                 },
                 child: Container(

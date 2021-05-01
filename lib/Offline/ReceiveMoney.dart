@@ -52,14 +52,17 @@ class _ScanPageState extends State<ScanPage> {
         body: Center(
           child: Column(
             children: [
+              SizedBox(height: 80,),
               Text(
                 (qrCodeResult == null) || (qrCodeResult == "")
-                    ? "Please Scan to show some result"
-                    : "Result:" + qrCodeResult,
+                    ? "Please Scan the QR"
+                    : startReceiving(qrCodeResult) == true ?  "Sucess!! Money credited"
+                    : "Wrong code !! Cannot be redeemed by this number.",
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
               ),
               SizedBox(height: 80,),
               Container(
+                padding: EdgeInsets.all(10),
                 color: Colors.white70,
                 child: TextField(
                   controller: qrCode,
@@ -73,7 +76,7 @@ class _ScanPageState extends State<ScanPage> {
 
                 },
                 child: Text("Check QR Code",
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               )
             ],
@@ -92,7 +95,7 @@ class _ScanPageState extends State<ScanPage> {
   }
 
 
-  Future<void> startReceiving(base64Str) async {
+  Future<bool> startReceiving(base64Str) async {
     await getName();
     //scan QR
     // var base64Str;
@@ -102,18 +105,19 @@ class _ScanPageState extends State<ScanPage> {
     var Receiver = transObject["3"];
     var expiry = DateTime.parse(transObject["4"]);
     if (expiry.isAfter(DateTime.now()) != true) {
-      print("Transaction timeout");
-      return;
+      return false;
     }
     //verify current number to Receiver
     if (Receiver != senderName) {
       print("Wrong code !! Cannot be redeemed by this number.");
-      return;
+      return false;
     }
     //add amount to wallet
     wallet = wallet + Amount;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setDouble('wallet', wallet);
+
+    return true;
   }
 }
 int camera = 1;

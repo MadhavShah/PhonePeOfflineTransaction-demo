@@ -8,6 +8,9 @@ import 'ReceiveMoney.dart';
 import 'SendMoney.dart';
 
 class SendOrReceive extends StatefulWidget {
+  double wallet;
+  String senderName;
+  SendOrReceive(this.wallet, this.senderName);
   @override
   _SendOrReceiveState createState() => _SendOrReceiveState();
 }
@@ -17,14 +20,15 @@ class _SendOrReceiveState extends State<SendOrReceive> {
   final _amount = TextEditingController();
   final _receiver = TextEditingController();
   String senderName;
-  double wallet;
-
+/*
   Future<bool> getName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
      senderName = prefs.getString('sender');
     print(senderName);
     wallet = prefs.getDouble('wallet');
   }
+  */
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +42,11 @@ class _SendOrReceiveState extends State<SendOrReceive> {
             mainAxisAlignment: MainAxisAlignment.center,
            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 30),
+              Text(
+                "Your Wallet Balance - ${widget.wallet}"
+              ),
+              SizedBox(height: 30),
               MaterialButton(
                 color: Colors.purple,
                   onPressed: () {
@@ -58,7 +67,7 @@ class _SendOrReceiveState extends State<SendOrReceive> {
                                     SizedBox(height: 10,),
                                      TextField(
                                        controller: _receiver,
-                                       decoration: InputDecoration(hintText: "Name of Receiver"),
+                                       decoration: InputDecoration(hintText: "Mobile Number of Receiver"),
                                     ),
                                     SizedBox(height: 20,),
                                     MaterialButton(
@@ -103,7 +112,6 @@ class _SendOrReceiveState extends State<SendOrReceive> {
   }
 
   Future<void> generateQRCode() async {
-    await getName();
     print(_amount.text);
     var expiry = DateTime.now().add(const Duration(minutes: 5));
     var transObject = {
@@ -116,13 +124,13 @@ class _SendOrReceiveState extends State<SendOrReceive> {
     // Deduct amount from wallet money
     print("Q R CODE");
     print(base64Str);
-    print(wallet);
-    if (double.parse(_amount.text) < wallet) {
+    print(widget.wallet);
+    if (double.parse(_amount.text) > widget.wallet) {
       showToast("Insufficient Amount in Wallet");
     }else {
-      wallet = wallet - double.parse(_amount.text);
+      widget.wallet = widget.wallet - double.parse(_amount.text);
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setDouble('wallet', wallet);
+      prefs.setDouble('wallet', widget.wallet);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => GenerateQR(base64Str)),
