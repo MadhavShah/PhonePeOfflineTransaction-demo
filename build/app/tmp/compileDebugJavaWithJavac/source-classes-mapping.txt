@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/kodekittu/phonepe_offline/BuildConfig.java
+ com.kodekittu.phonepe_offline.BuildConfig
