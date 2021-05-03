@@ -22,14 +22,19 @@ class _FlutterDevsState extends State<FlutterDevs> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('sender', _username.text);
     prefs.setDouble('wallet', 5000.00);
+    List<String> transactions = [];
+    prefs.setStringList('transactions', transactions);
+    print(transactions);
   }
 
   Future<bool> getName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-     senderName = prefs.getString('sender');
+    senderName = prefs.getString('sender');
     print(senderName);
-     wallet = prefs.getDouble('wallet');
+    wallet = prefs.getDouble('wallet');
     print(wallet);
+    List<String> transaction = prefs.getStringList('transactions');
+    print(transaction);
   }
 
   @override
@@ -40,34 +45,38 @@ class _FlutterDevsState extends State<FlutterDevs> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.popup == true ?
-    AlertDialog(
-      title: Text("Hey what's your Mobile Number?"),
-      content: Column(
-        children: [
-          TextField(
-            controller: _username,
-          ),
-          MaterialButton(
-            color: Colors.purple,
-            onPressed: () async {
-              await setName();
-              await getName();
-              setState(() {
-                widget.popup = false;
-              });
-            },
-            child: Text("Go >>",
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+    return widget.popup == true
+        ? AlertDialog(
+            title: Text("Hey what's your Mobile Number?"),
+            content: Column(
+              children: [
+                TextField(
+                  controller: _username,
+                ),
+                MaterialButton(
+                  color: Colors.purple,
+                  onPressed: () async {
+                    await setName();
+                    await getName();
+                    setState(() {
+                      widget.popup = false;
+                    });
+                  },
+                  child: Text(
+                    "Go >>",
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                )
+              ],
             ),
           )
-        ],
-      ),
-    )
-    :  Scaffold(
-        appBar: _appBar(),
-        body: SafeArea(child: _bodyItem()),
-        bottomNavigationBar: _bottemTab());
+        : Scaffold(
+            appBar: _appBar(),
+            body: SafeArea(child: _bodyItem()),
+            bottomNavigationBar: _bottemTab());
   }
 
   Widget _appBar() {
@@ -242,27 +251,31 @@ class _FlutterDevsState extends State<FlutterDevs> {
             child: Stack(
           children: <Widget>[
             Container(
-              height: MediaQuery.of(context).size.width/3.0,
+              height: MediaQuery.of(context).size.width / 3.0,
               width: MediaQuery.of(context).size.width,
               padding: const EdgeInsets.all(15),
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => SendOrReceive(wallet, senderName)),
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            SendOrReceive(wallet, senderName)),
                   );
                 },
                 child: Container(
                   color: Colors.green,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8, bottom: 13),
-                    child:
-                      Center(
-                        child: Text("OFFLINE TRANSACTION",
-                          style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.purple),
+                      padding: const EdgeInsets.only(top: 8, bottom: 13),
+                      child: Center(
+                        child: Text(
+                          "OFFLINE TRANSACTION",
+                          style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.purple),
                         ),
-                      )
-                  ),
+                      )),
                 ),
               ),
             ),
@@ -503,7 +516,6 @@ class _FlutterDevsState extends State<FlutterDevs> {
     list.add(new ImageSliderModel("assets/ghghgh.jpg"));
     list.add(new ImageSliderModel("assets/ghghgh.jpg"));
 
-
     return list;
   }
 
@@ -547,7 +559,6 @@ class _FlutterDevsState extends State<FlutterDevs> {
 
   Widget imageSliderItem(ImageSliderModel i) {
     return Container(
-
         padding: EdgeInsets.only(left: 8, right: 8),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), color: Colors.white),
@@ -557,8 +568,7 @@ class _FlutterDevsState extends State<FlutterDevs> {
           borderRadius: BorderRadius.circular(10),
           child: Image.asset(
             i.path,
-fit: BoxFit.fill,
-
+            fit: BoxFit.fill,
 
 //            width: MediaQuery.of(context).size.width/4,
 //            height: MediaQuery.of(context).size.height,
